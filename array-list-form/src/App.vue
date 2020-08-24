@@ -3,8 +3,8 @@
     <div class="container">
         <div class="row first">
           <div class="col-md-4">
-            <h4 class="user-title">List of Users</h4>
             <div class="users-listing">
+            <h4 class="user-title">List of Users</h4>
               <ul>
                 <li v-for="(user, index) in users" :key="index">
                   <p @click="viewUserListing(index)" :class="{'active': index == isActive}">{{ user.first_name }}</p>
@@ -14,8 +14,42 @@
           </div>
           <div class="col-md-8 user-col-details">
             <div class="display-users-details">
-              <p>{{ selectedUser.first_name }}</p>
-              <p></p>
+              <div class="row">
+                <div class="col-12 inner-form-detail">
+                  <p>User ID: {{ selectedUser.id }}</p>
+                </div>
+                <div class="col-md-6 inner-form-detail">
+                  <label>First Name</label>
+                  <input type="text" v-model="selectedUser.first_name"/>
+                </div>
+                <div class="col-md-6 inner-form-detail">
+                  <label>Last Name</label>
+                  <input type="text" v-model="selectedUser.last_name"/>
+                </div>
+                <div class="col-md-6 inner-form-detail">
+                  <label>Email</label>
+                  <input type="email" v-model="selectedUser.email"/>
+                </div>
+                <div class="col-md-6 inner-form-detail">
+                  <label>Address</label>
+                  <input type="text" v-model="selectedUser.address"/>
+                </div>
+                <div class="col-md-6 inner-form-detail">
+                  <label>Gender</label>
+                  <div class="gender-sec">
+                    <input type="radio" id="fogender" v-model="selectedUser.gender" checked/>
+                    <label for="fogender">{{ selectedUser.gender }}</label>
+                  </div>
+                </div>
+                <div class="col-md-6 inner-form-detail">
+                  <label>Phone Number</label>
+                  <input type="text" v-model="selectedUser.phone"/>
+                </div>
+                <div class="col-md-6 inner-form-detail">
+                  <label>Language Spoken</label>
+                  <input type="text" v-model="selectedUser.language_spoken"/>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -78,9 +112,9 @@ body {
     box-shadow: 0 0 20px rgba(0,0,0,.2)!important;
     margin: 40px 0;
     border-radius: 20px;
-    padding: 40px 20px;
 
     .users-listing {
+      padding: 40px 20px;
       ul {
         margin-bottom: 0;
         padding: 0;
@@ -108,7 +142,43 @@ body {
       }
     } 
     .user-col-details {
+      border-radius: 0 20px 20px 0;
+      padding: 25px 40px 40px;
       background: #f5f5f5;
+
+      .display-users-details {
+        .inner-form-detail{
+          margin: 15px 0;
+          label {
+            display: block;
+            font-size: 18px;
+            margin-bottom: .5rem;
+            color: #999;
+          }
+          input[type="text"], input[type="email"] {
+            border-radius: 20px;
+            width: 100%;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            height: 60px;
+            color: #999999;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+          }
+          .gender-sec {
+            display: flex;
+            align-items: center;
+
+            label {
+              margin: 0 0 0 5px;
+            }
+          }
+        }
+    }
   }
 }
 
